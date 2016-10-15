@@ -1,0 +1,52 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.netflix.nebula:gradle-ospackage-plugin:4.4.0'
+        classpath 'org.ajoberstar:gradle-git:1.6.0'
+        classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
+        classpath 'org.gebish:geb-gradle:1.1.1'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'nebula.ospackage'
+apply plugin: 'groovy'
+
+jar {
+    baseName = 'modelcheck'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+defaultTasks 'clean', 'build' 
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile ('ch.qos.logback:logback-classic:1.2.2') {
+        force = true
+    }
+    compile ('ch.qos.logback:logback-core:1.2.2') {
+        force = true
+    }
+
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.11'
+    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
+    testCompile 'org.mockito:mockito-core:2.7.22'
+}
+
+sourceSets {
+    test {
+        resources.srcDir file('src/test/resources')
+    }
+
+    main.java.srcDirs += ["src/main/java", "build/generated"]
+}
