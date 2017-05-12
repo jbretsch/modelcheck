@@ -8,25 +8,7 @@
 
 Suppose you have the following Kripke structure.
 
-![Example Kripke structure](http://g.gravizo.com/g?
-  digraph G {
-    rankdir="LR";
-    node [shape="circle"];
-    secret_node [style=invisible,width=.05,fixedsize=true]
-    s0[label="s0\na,b"];
-    s1[label="s1\nb"];
-    s2[label="s2\nb"];
-    s3[label="s3\nc"];
-    secret_node -> s0;
-    s0 -> s1;
-    s0 -> s2;
-    s1 -> s1;
-    s1 -> s2;
-    s2 -> s0;
-    s2 -> s3;
-    s3 -> s1;
-  }
-)
+![Example Kripke structure](http://g.gravizo.com/svg?digraph%20G%20{%20rankdir=%22LR%22;%20node%20[shape=%22circle%22];%20secret_node%20[style=invisible,width=.05,fixedsize=true]%20s0[label=%22s0\na,b%22];%20s1[label=%22s1\nb%22];%20s2[label=%22s2\nb%22];%20s3[label=%22s3\nc%22];%20secret_node%20-%3E%20s0;%20s0%20-%3E%20s1;%20s0%20-%3E%20s2;%20s1%20-%3E%20s1;%20s1%20-%3E%20s2;%20s2%20-%3E%20s0;%20s2%20-%3E%20s3;%20s3%20-%3E%20s1;%20})
 
 `s0` is the initial state. In state `s0` holds proposition `a`; in states `s0`, `s1`, and `s2` holds proposition `b`;
 and in state `s3` holds proposition `c`.
