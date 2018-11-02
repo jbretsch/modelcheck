@@ -4,10 +4,11 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.netflix.nebula:gradle-ospackage-plugin:4.4.0'
-        classpath 'org.ajoberstar:gradle-git:1.6.0'
+        classpath 'com.netflix.nebula:gradle-ospackage-plugin:5.1.0'
+        classpath 'org.ajoberstar:gradle-git:1.7.2'
         classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
         classpath 'org.gebish:geb-gradle:1.1.1'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.20.0'
     }
 }
 
@@ -15,6 +16,7 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'nebula.ospackage'
 apply plugin: 'groovy'
+apply plugin: 'com.github.ben-manes.versions'
 
 jar {
     baseName = 'modelcheck'
@@ -31,16 +33,16 @@ repositories {
 }
 
 dependencies {
-    compile ('ch.qos.logback:logback-classic:1.2.2') {
+    compile ('ch.qos.logback:logback-classic:1.2.3') {
         force = true
     }
-    compile ('ch.qos.logback:logback-core:1.2.2') {
+    compile ('ch.qos.logback:logback-core:1.2.3') {
         force = true
     }
 
-    testCompile 'org.codehaus.groovy:groovy-all:2.4.11'
-    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
-    testCompile 'org.mockito:mockito-core:2.7.22'
+    testCompile 'org.codehaus.groovy:groovy-all:2.5.3'
+    testCompile 'org.spockframework:spock-core:1.2-groovy-2.5'
+    testCompile 'org.mockito:mockito-core:2.23.0'
 }
 
 sourceSets {
