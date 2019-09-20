@@ -15,9 +15,7 @@ apply plugin: 'idea'
 apply plugin: 'groovy'
 apply plugin: 'com.github.ben-manes.versions'
 
-jar {
-    baseName = 'modelcheck'
-}
+archivesBaseName = 'modelcheck'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
