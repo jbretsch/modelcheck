@@ -1,7 +1,7 @@
 # modelcheck
 
-[![Maven Central](https://img.shields.io/maven-central/v/net.bretti.modelcheck/modelcheck?color=53C92E)](https://maven-badges.herokuapp.com/maven-central/net.bretti.modelcheck/modelcheck)
-[![License](https://img.shields.io/github/license/jbretsch/modelcheck)](https://github.com/jbretsch/modelcheck/blob/master/LICENSE)
+[![Maven Central](https://img.shields.io/maven-central/v/net.bretti.modelcheck/modelcheck?color=brightgreen)](https://maven-badges.herokuapp.com/maven-central/net.bretti.modelcheck/modelcheck)
+[![License](https://img.shields.io/github/license/jbretsch/modelcheck?color=brightgreen)](https://github.com/jbretsch/modelcheck/blob/master/LICENSE)
 
 `modelcheck` is a Java library that allows you to check whether a given transition system (described as a
 [Kripke structure](https://en.wikipedia.org/wiki/Kripke_structure_\(model_checking\))) satisfies a given
