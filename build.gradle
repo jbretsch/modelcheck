@@ -7,6 +7,7 @@ buildscript {
         classpath 'org.ajoberstar:gradle-git:1.7.2'
         classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
         classpath 'com.github.ben-manes:gradle-versions-plugin:0.25.0'
+        classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:3.0.3'
     }
 }
 
@@ -14,8 +15,12 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'groovy'
 apply plugin: 'com.github.ben-manes.versions'
+apply plugin: 'nebula.provided-base'
+apply plugin: 'nebula.optional-base'
 
+group = "net.bretti.modelcheck"
 archivesBaseName = 'modelcheck'
+version = "1.0.0"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -28,12 +33,9 @@ repositories {
 }
 
 dependencies {
-    compile ('ch.qos.logback:logback-classic:1.2.3') {
-        force = true
-    }
-    compile ('ch.qos.logback:logback-core:1.2.3') {
-        force = true
-    }
+    compile 'org.slf4j:slf4j-api:1.7.28'
+
+    runtime 'ch.qos.logback:logback-classic:1.2.3', optional
 
     testCompile 'org.codehaus.groovy:groovy-all:2.5.8'
     testCompile 'org.spockframework:spock-core:1.3-groovy-2.5'
@@ -46,4 +48,8 @@ sourceSets {
     }
 
     main.java.srcDirs += ["src/main/java", "build/generated"]
+}
+
+if (hasProperty('ossrhUsername')) {
+    apply from: 'publish.gradle'
 }
