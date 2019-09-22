@@ -5,7 +5,15 @@
 
 `modelcheck` is a Java library that allows you to check whether a given transition system (described as a
 [Kripke structure](https://en.wikipedia.org/wiki/Kripke_structure_\(model_checking\))) satisfies a given
-[computation tree logic (CTL)](https://en.wikipedia.org/wiki/Computation_tree_logic) formula.
+[computation tree logic (CTL)](https://en.wikipedia.org/wiki/Computation_tree_logic) formula. For this task `modelcheck`
+uses an explicit labelling algorithm coupled with
+[Tarjan's strongly connected components algorithm](https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm).
+
+`modelcheck` can, as of now, not compete with state of the art explicit state exploration model checking tools. Its
+main benefit lies in being an easily accessible _library_ anybody can integrate in their own software. If you search
+for a powerful model checking tool for [Petri nets](https://en.wikipedia.org/wiki/Petri_net), I suggest taking a look at
+[LoLA: A Low Level Petri Net Analyzer](https://theo.informatik.uni-rostock.de/theo-forschung/werkzeuge/) created by
+[Professor Karsten Wolf](https://theo.informatik.uni-rostock.de/theo-team/karsten-wolf/).
 
 ## Example
 
