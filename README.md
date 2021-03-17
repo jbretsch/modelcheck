@@ -13,7 +13,7 @@ uses an explicit labelling algorithm coupled with
 main benefit lies in being an easily accessible _library_ anybody can integrate in their own software. If you search
 for a powerful model checking tool for [Petri nets](https://en.wikipedia.org/wiki/Petri_net), I suggest taking a look at
 [LoLA: A Low Level Petri Net Analyzer](https://theo.informatik.uni-rostock.de/theo-forschung/werkzeuge/) created by
-[Professor Karsten Wolf](https://theo.informatik.uni-rostock.de/theo-team/karsten-wolf/).
+[Professor Karsten Wolf](https://theo.informatik.uni-rostock.de/karsten-wolf/).
 
 ## Example
 
