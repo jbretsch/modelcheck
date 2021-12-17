@@ -1,55 +1,103 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath 'org.ajoberstar:gradle-git:1.7.2'
-        classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
-        classpath 'com.github.ben-manes:gradle-versions-plugin:0.25.0'
-        classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:3.0.3'
-    }
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+    id 'idea'
+    id 'groovy'
+    id "com.github.ben-manes.versions" version "0.39.0"
+    id "nebula.optional-base" version "7.0.0"
 }
-
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'groovy'
-apply plugin: 'com.github.ben-manes.versions'
-apply plugin: 'nebula.provided-base'
-apply plugin: 'nebula.optional-base'
 
 group = "net.bretti.modelcheck"
 archivesBaseName = 'modelcheck'
-version = "1.0.0"
+version = "1.0.1-SNAPSHOT"
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 defaultTasks 'clean', 'build'
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.28'
+    implementation 'org.slf4j:slf4j-api:1.7.32'
 
-    runtime 'ch.qos.logback:logback-classic:1.2.3', optional
+    testRuntime 'ch.qos.logback:logback-classic:1.2.8'
 
-    testCompile 'org.codehaus.groovy:groovy-all:2.5.8'
-    testCompile 'org.spockframework:spock-core:1.3-groovy-2.5'
-    testCompile 'org.mockito:mockito-core:3.0.0'
+    testImplementation 'org.codehaus.groovy:groovy-all:3.0.9'
+    testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
+    testImplementation 'org.mockito:mockito-core:4.1.0'
 }
 
-sourceSets {
-    test {
-        resources.srcDir file('src/test/resources')
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'modelcheck'
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = 'modelcheck'
+                description = 'modelcheck is a Java library that allows you to check whether a given transition ' +
+                        'system (described as a Kripke structure) satisfies a given computation tree logic ' +
+                        '(CTL) formula.'
+                url = 'https://github.com/jbretsch/modelcheck'
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://github.com/jbretsch/modelcheck/blob/master/LICENSE'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'jbretsch'
+                        name = 'Jan Bretschneider'
+                        email = 'mail@jan-bretschneider.de'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/jbretsch/modelcheck.git'
+                    developerConnection = 'scm:git:ssh://github.com:jbretsch/modelcheck.git'
+                    url = 'https://github.com/jbretsch/modelcheck'
+                }
+            }
+        }
     }
-
-    main.java.srcDirs += ["src/main/java", "build/generated"]
+    repositories {
+        maven {
+            name = 'ossrh'
+            credentials(PasswordCredentials)
+            def releasesRepoUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+            def snapshotsRepoUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+        }
+    }
 }
 
-if (hasProperty('ossrhUsername')) {
-    apply from: 'publish.gradle'
+signing {
+    sign publishing.publications.mavenJava
+}
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
+
+tasks.named('wrapper') {
+    gradleVersion = '6.9'
+    distributionType = Wrapper.DistributionType.ALL
 }
