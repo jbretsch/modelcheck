@@ -24,7 +24,7 @@ repositories {
 dependencies {
     implementation 'org.slf4j:slf4j-api:1.7.32'
 
-    testRuntime 'ch.qos.logback:logback-classic:1.2.8'
+    testRuntimeOnly 'ch.qos.logback:logback-classic:1.2.8'
 
     testImplementation 'org.codehaus.groovy:groovy-all:3.0.9'
     testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
@@ -98,6 +98,6 @@ javadoc {
 }
 
 tasks.named('wrapper') {
-    gradleVersion = '6.9'
+    gradleVersion = '7.3.2'
     distributionType = Wrapper.DistributionType.ALL
 }
