@@ -52,14 +52,14 @@ publishing {
             }
             pom {
                 name.set("modelcheck")
-                description.set("modelcheck(is a Java library that allows you to check whether a given transition " +
+                description.set("modelcheck is a Java library that allows you to check whether a given transition " +
                         "system (described as a Kripke structure) satisfies a given computation tree logic " +
                         "(CTL) formula.")
                 url.set("https://github.com/jbretsch/modelcheck")
                 licenses {
                     license {
                         name.set("MIT License")
-                        url.set("https://github.com/jbretsch/modelcheck(/blob/master/LICENSE")
+                        url.set("https://github.com/jbretsch/modelcheck/blob/master/LICENSE")
                     }
                 }
                 developers {
@@ -71,7 +71,7 @@ publishing {
                 }
                 scm {
                     connection.set("scm:git:git://github.com/jbretsch/modelcheck.git")
-                    developerConnection.set("scm:git:ssh://github.com:jbretsch/modelcheck.git")
+                    developerConnection.set("scm:git:ssh://github.com/jbretsch/modelcheck.git")
                     url.set("https://github.com/jbretsch/modelcheck")
                 }
             }
